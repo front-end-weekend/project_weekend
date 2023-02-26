@@ -15,7 +15,7 @@
 
 ##### [이지형](https://github.com/Jihyeong00)
 
-##### [배상아](https://github.com/signature95)
+##### [배상아](https://github.com/SangA77)
 
 ##### [김예슬](https://github.com/yesoryeseul)
 
