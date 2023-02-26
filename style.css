@@ -1,0 +1,53 @@
+a {
+  text-decoration: none;
+  color: blue;
+}
+a:visited {
+  color: blue;
+}
+a.github:before {
+  background-image: url(./github.png);
+  background-size: contain;
+  width: 1rem;
+  height: 1rem;
+  background-repeat: none;
+  display: inline-block;
+  content: "";
+  margin-right: 0.5rem;
+}
+a.notion::before {
+  background-image: url(./notion.png);
+  background-size: contain;
+  width: 1rem;
+  height: 1rem;
+  background-repeat: none;
+  display: inline-block;
+  content: "";
+  margin-right: 0.5rem;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+}
+h1 {
+  font-size: 2rem;
+}
+h2 {
+  font-size: 1.5rem;
+}
+h3 {
+  font-size: 1.17rem;
+}
+h4 {
+  font-size: 1rem;
+}
+h5 {
+  font-size: 0.83rem;
+}
+h6 {
+  font-size: 0.67rem;
+}
