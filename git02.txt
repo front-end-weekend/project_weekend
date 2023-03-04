@@ -1,0 +1,161 @@
+
+0. git flow - branch 설명
+1. 저랑 놀 분
+2. 오거나이제이션
+    
+   branch -> clone -> fork -> merge -> pr -> issue
+
+3. 호스팅 [dothome, FTP, github]
+
+
+
+    ** branch 
+
+            repository 생성
+            분기를 나눌 수 있다.
+
+            main(master) : default branch
+
+            dev(release, test, v0.1) : development branch
+
+            -------------항시 있는 브랜치--------------------------
+
+            feat
+
+            fix
+
+            style...
+
+            ex) feat/login
+                style/event-screen
+                hotfix/sns-login
+
+            ------------일시적 / 완료되면 삭제될 브랜치--------------------
+
+
+    ** Semantic Commit Message: 브랜치 이름과 커밋 메세지만으로 정보 전달이 될수있도록
+            
+            https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
+
+            ex) 
+            feat: add hat wobble
+            ^--^  ^------------^
+            |     |
+            |     +-> Summary in present tense.
+            |
+            +-------> Type: chore, docs, feat, fix, refactor, style, or test.
+
+
+            More Examples:
+
+            ⭐️ feat: 새로운 기능(빌드 스크립트를 위한 새로운 기능이 아닌 사용자를 위한 새로운 기능)
+            〄 fix: 버그 수정(빌드 스크립트에 대한 수정이 아닌 사용자를 위한 버그 수정)
+            💻 docs: 문서 수정(문서 변경 사항)
+            🖍 style: 레이아웃, 코드 스타일 수정(포맷, 세미콜론 누락 등; 생산 코드 변경 없음)
+            🖋 refactor: 기능 개선(프로덕션 코드 리팩토링, 예: 변수 이름 바꾸기)
+            🔜 test: 테스트 코드(누락된 테스트 추가, 테스트 리팩토링, 프로덕션 코드 변경 없음)
+            ➿ chore: 로직 외 코드 수정 (grunt 작업 업데이트 등; 프로덕션 코드 변경 없음)
+
+            ex)
+                🙏 feat: 로그인 로직을 추가하였습니다.
+                style: 이벤트 스크린의 배너를 추가하였습니다.
+
+    ** Flow
+
+            1. repository 생성
+            2. 로컬 저장소 (.git)과 원격저장소(github) 연결
+            3. init 파일을 main에 push (프로젝트 폴더 구조)
+            4. 분기점(branch) 생성
+
+                git branch
+                    - 현재 내 로컬 환경에 만들어진 branch 목록
+                
+                git branch 브랜치명
+                    - 해당 브랜치명의 브랜치가 내 로컬 환경에 생성
+                
+                git branch -D 브랜치명
+                    - 해당 브랜치명의 브랜치 로컬 환경에서 삭제
+
+                git checkout 브랜치명
+                    - 현재 내 로컬환경에서 바라보고 있는 브랜치 변경
+
+                git checkout -b 브랜치명
+                    - 브랜치 생성과 이동을 한번에 해주는 명령어
+                    - 단, 해당 브랜치는 현재 내 로컬 환경 브랜치 목록에
+                      존재해서는 안된다.
+
+            5. 개발..ing, add - commit - (pull) - push 
+
+                    - git pull 원격저장소명 branch --rebase (pull안될때 rebase 야매로 씀)
+                    - git push prigin 브랜치명 ( 원격저장소에서도 분기가 생김)
+                    - 개발 중에도 버전관리는 이루어져야한다
+        
+            6. main (init)
+               new branch (dev)
+
+                    - 개발 종료 후 main branch 합치는 과정
+                    - git merge 합칠 브랜치명
+                
+                ex) feat/login - 기능 개발
+                    git checkout main - git pull main
+                    git checkout feat/login
+                    git merge main
+
+                    conflict 발생 - resolve
+
+                    commit -> push 
+
+                        현재 수정 사항이있는데 -> 다른 브랜치로 이동
+                        git stash (스테이징 된 변경사항 파일을 잠깐 저장) 
+                        git stash pop (가장 최근 스테이싱 내역을 다시 뺴온다)
+                            ex) 
+                                git checkout main (수정사항 x)
+                                git stash
+                                git checkout main (이동 o)
+                                git pull main (o)
+                                git checkout 브랜치
+                                git stash pop (수정사항이 있어도 브랜치 이동 가능)
+
+                    코드 이상없는지 test 
+                    (main 브랜치와 merge -> 충돌 해결 -> 테스트 끝)
+                    
+                    git add .
+                    git commit
+                    *git push origin main => 될까요 안될까요? (X)
+                    - 바로 main에 푸쉬하는 것이 아니라 
+                    - 내 기존 브랜치에 푸쉬 후 허락
+                    
+                    git push orgin 브랜치
+                    (원격 저장소에도 여러분의 branch 생김)
+
+                        ex) pull request (pr) => code review => 확인
+                            ------------목적지 설정(main, v0.1)
+
+                main(원격저장소) ----> main + dev
+                    
+                    git checkout main
+                    git pull origin main
+
+                    - 원격 저장소와 내 로컬 환경 main 브랜치의 동기화
+                    - 자동으로 되어있을 수 있음
+		
+		git status- 명령어를 사용하면 현재 위치하고 있는 디렉터리의 git 상태를 확인할 수가 있어요
+			    스테이징, 커밋, 변경사항등 다양하고 보류중인 정보들 확인할 수 있습니다
+
+                    
+
+            =====================깃허브 플로우======================
+            브랜치를 나눠서 각 develop 브랜치를 맡아서 개발을 시작하고 dev 브랜치로 합치고 이전 브랜치들은 삭제함
+            dev브랜치로 테스트를 진행후 main 브랜치와 합침
+
+            그럼에도 main 브랜치에 오류가 발생하면
+            main의 복제본인 hotpix 브랜치를 만들어 고쳐서 main 브랜치에 합침
+            ====================================================
+
+
+            =====================트렁크 베이스=====================
+            트렁크 베이스 디벨롭먼트
+
+            코드 리뷰를 바로 릴리즈함 바로 때려박음
+            ====================================================
+
