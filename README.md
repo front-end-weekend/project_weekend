@@ -9,8 +9,6 @@
 
 # Team
 
-##### [주진용](https://github.com/ideainqu)
-
 ##### [지성경](https://github.com/zivivle)
 
 ##### [이지형](https://github.com/Jihyeong00)
